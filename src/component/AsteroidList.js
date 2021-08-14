@@ -46,6 +46,9 @@ class AsteroidList extends Component {
 
         const { asteroids, isLoaded, error } = this.state;
         
+        if (asteroids.length > 0) {
+            console.log(asteroids.name);
+        }
 
         if (!isLoaded) {
             return <div>Loading...</div>;
