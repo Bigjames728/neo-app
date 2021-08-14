@@ -11,7 +11,8 @@ class AsteroidList extends Component {
     }
 
     componentDidMount() {
-        fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=2021-08-13&end_date=2021-08-14&api_key=cQOiV75HayqqGVRk4qpcamRywUxoP0G3qBJiohT8`)
+        const API_KEY = 'cQOiV75HayqqGVRk4qpcamRywUxoP0G3qBJiohT8';
+        fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=2021-08-13&end_date=2021-08-14&api_key=${API_KEY}`)
             .then(res => res.json())
             .then(
                 (result) => {
