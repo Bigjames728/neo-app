@@ -21,6 +21,7 @@ class AsteroidList extends Component {
                         isLoaded: true,
                         asteroids: result.asteroids
                     });
+                    
                 },
                 (error) => {
                     this.setState({
@@ -35,6 +36,7 @@ class AsteroidList extends Component {
     render() {
 
         const { asteroids, isLoaded, error } = this.state;
+        
 
         if (!isLoaded) {
             return <div>Loading...</div>;
