@@ -10,16 +10,16 @@ class AsteroidList extends Component {
         };
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const API_KEY = 'cQOiV75HayqqGVRk4qpcamRywUxoP0G3qBJiohT8';
         fetch(`https://api.nasa.gov/neo/rest/v1/feed?start_date=2021-08-13&end_date=2021-08-14&api_key=${API_KEY}`)
             .then(res => res.json())
             .then(
                 (result) => {
-                    console.log(result);
+                    console.log(result.near_earth_objects);
                     this.setState({
                         isLoaded: true,
-                        asteroids: result.asteroids
+                        asteroids: result.near_earth_objects
                     });
                     
                 },
@@ -30,6 +30,14 @@ class AsteroidList extends Component {
                     });
                 }
             )
+
+        // Below is an easier more clear way of reading the above code. Keeping for reference.
+        // const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=2021-08-13&end_date=2021-08-14&api_key=${API_KEY}`;
+        // const response = await fetch(url);
+        // const data = await response.json();
+        // console.log(data.near_earth_objects);
+        // this.setState({ asteroids: data.near_earth_objects, isLoaded: true });
+        
             
     }
 
@@ -44,13 +52,18 @@ class AsteroidList extends Component {
 
             return (
                 
-                <ul>
-                    {asteroids.map(asteroid => (
-                        <li key={asteroid.id}>
-                            {asteroid.name} {asteroid.close_approach_data.miss_distance.miles}
-                        </li>
-                    ))}
-                </ul>
+                <div>
+                    {asteroids}
+                </div>
+
+
+                // <ul>
+                //     {asteroids.map(asteroid => (
+                //         <li key={asteroid.id}>
+                //             {asteroid.name} {asteroid.close_approach_data.miss_distance.miles}
+                //         </li>
+                //     ))}
+                // </ul>
             )
         }
     }
