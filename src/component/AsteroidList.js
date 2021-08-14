@@ -31,7 +31,8 @@ class AsteroidList extends Component {
                 }
             )
 
-        // Below is an easier more clear way of reading the above code. Keeping for reference.
+        // Below is an easier more clear way of reading/writing the above code. Keeping for reference.
+
         // const url = `https://api.nasa.gov/neo/rest/v1/feed?start_date=2021-08-13&end_date=2021-08-14&api_key=${API_KEY}`;
         // const response = await fetch(url);
         // const data = await response.json();
