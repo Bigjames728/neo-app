@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class AsteroidList extends Component {
     constructor() {
@@ -16,10 +17,10 @@ class AsteroidList extends Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                    console.log(result.near_earth_objects);
+                    // console.log(result.near_earth_objects['2021-08-13']);
                     this.setState({
                         isLoaded: true,
-                        asteroids: result.near_earth_objects
+                        asteroids: result.near_earth_objects['2021-08-13']
                     });
                     
                 },
@@ -45,29 +46,23 @@ class AsteroidList extends Component {
     render() {
 
         const { asteroids, isLoaded, error } = this.state;
-        
-        if (asteroids.length > 0) {
-            console.log(asteroids.name);
-        }
 
         if (!isLoaded) {
             return <div>Loading...</div>;
         } else {
-
+            console.log(asteroids);
             return (
                 
-                <div>
-                    {asteroids}
-                </div>
-
-
-                // <ul>
-                //     {asteroids.map(asteroid => (
-                //         <li key={asteroid.id}>
-                //             {asteroid.name} {asteroid.close_approach_data.miss_distance.miles}
-                //         </li>
-                //     ))}
-                // </ul>
+                 <ul>
+                     {asteroids.map((asteroid, index) => {
+                         return (
+                            <li key={`${asteroid.id}`}>
+                             <p>Asteroid Name: {asteroid.name}</p> 
+                             <p>{asteroid.nasa_jpl_url}</p>
+                         </li>
+                         )
+                     })}
+                 </ul>
             )
         }
     }
